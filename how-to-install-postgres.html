@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC
+    "-//W3C//DTD XHTML 1.1 plus MathML 2.0 plus SVG 1.1//EN"
+    "http://www.w3.org/2002/04/xhtml-math-svg/xhtml-math-svg.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:svg="http://www.w3.org/2000/svg" xml:lang="en">
+<head><meta http-equiv="Content-type" content="application/xhtml+xml;charset=utf-8" /><title></title></head>
+<body>
+<p><a href="http://www.postgresql.org">PostgreSQL</a> is a relational database manager that keeps getting more and more popular within the web development community. It has taken over from <a href="http://www.mysql.com">MySQL</a> as the preferred tool for production quality, scalable databases. The rise in popularity is likely due to the backlash from Oracle purchasing MySQL, <a href="https://www.heroku.com/postgres">Heroku choosing Postgres</a> as the preferred database in production, and Postgres’ faster pace of development of new features like <a href="http://adamsanderson.github.io/railsconf_2013/">Arrays and HStore</a>.</p>
+
+<ul>
+<li><a href="#macosx">Mac OS X</a></li>
+
+<li><a href="#windows">Windows</a></li>
+
+<li><a href="#ubuntu">Ubuntu</a></li>
+</ul>
+
+<p><a name='macosx' /></p>
+
+<h3 id="how_to_install_postgres_on_mac_os_x">How to Install Postgres on Mac OS X</h3>
+
+<p>There are a lot of <a href="http://www.postgresql.org/download/macosx/">confusing options</a> for installing PostgreSQL. In fact, your Mac most likely came with a system version of Postgres. The problem is that version is already likely out-of-date, and may even be insecure. It is better to keep all programs you use for development in user space instead of installed system-wide if possible, so that you don’t mess with <a href="https://discussions.apple.com/message/23547312#23547312">what Apple configured the system to expect</a>.</p>
+
+<p>I prefer to use the <a href="http://brew.sh">homebrew</a> package manager because it makes it easier to keep the software up-to-date. Brew also installs all commands needed to manage Postgres to standard locations in your path, which makes it easier to use on the command line, and easier for libraries like <a href="https://rubygems.org/gems/pg">Ruby Gems</a> and <a href="https://npmjs.org/package/pg">npm packages</a> to interact with.</p>
+
+<p>This lesson below will teach you how to install PostgreSQL, the easy way, on a Mac. This tutorial is designed for Max OS 10.9 - Mavericks. If you don’t have Mavericks, upgrade your mac first.</p>
+
+<h4 id="open_up_the_terminal">Open up the Terminal</h4>
+
+<p><img src="http://assets.codefellows.org/install_homebrew_postgres/images/Install_Homebrew_and_PostgreSQL_on_Mac_OS_X_Mavericks/media_1387413
+864323.png" alt="opening the terminal" /></p>
+
+<p>You’ll need to do many of these steps in the command line.</p>
+
+<h4 id="install_homebrew">Install Homebrew</h4>
+
+<p><img src="http://assets.codefellows.org/install_homebrew_postgres/images/Install_Homebrew_and_PostgreSQL_on_Mac_OS_X_Mavericks/media_1387413
+932210.png" alt="" /></p>
+
+<p>Copy the install command from the Install Homebrew section, near the bottom of the page on http://brew.sh</p>
+
+<p>Caveats:</p>
+
+<p>Don’t re-install homebrew if you already have it.<br />If you already have it, make sure to do a <code>brew update</code> to ensure you have the latest package info on your system.<br />If you have MacPorts or Fink installed, this tutorial won’t work for you. I recommend switching to Homebrew anyway as it is kept up to date more often.<br />If you have homebrew installed via RVM (it happens), your paths will begin with /home/username/.rvm/usr/local instead of just /usr/local - not to worry.</p>
+
+<h4 id="start_homebrew_installation">Start homebrew installation</h4>
+
+<p><img src="http://assets.codefellows.org/install_homebrew_postgres/images/Install_Homebrew_and_PostgreSQL_on_Mac_OS_X_Mavericks/media_1387414
+019607.png" alt="" /></p>
+
+<p>Paste the install homebrew command into the Terminal. It should look somewhat like the picture above.</p>
+
+<h4 id="install_the_command_line_tools">Install the Command Line Tools</h4>
+
+<p><img src="http://assets.codefellows.org/install_homebrew_postgres/images/Install_Homebrew_and_PostgreSQL_on_Mac_OS_X_Mavericks/media_1387414
+053245.png" alt="" /></p>
+
+<p>You may already have these if you’ve been developing for a while. If you see the dialog above, let them install.</p>
+
+<h4 id="wait_for_the_command_line_tools_to_download">Wait for the command line tools to download</h4>
+
+<p><img src="http://assets.codefellows.org/install_homebrew_postgres/images/Install_Homebrew_and_PostgreSQL_on_Mac_OS_X_Mavericks/media_1387414
+077419.png" alt="" /></p>
+
+<p>This step can take a while, hopefully you are on a good connection.</p>
+
+<h4 id="enter_your_password">Enter your password</h4>
+
+<p><img src="http://assets.codefellows.org/install_homebrew_postgres/images/Install_Homebrew_and_PostgreSQL_on_Mac_OS_X_Mavericks/media_1387414
+408632.png" alt="" /></p>
+
+<p>Homebrew needs your user password to set itself up. Enter it in the terminal. Be careful typing, because you won’t see your typing echoed back to you. It may seem like it’s not working, but if you enter in your password, and then press return, it should work.</p>
+
+<h4 id="homebrew_finishes">Homebrew finishes!</h4>
+
+<p><img src="http://assets.codefellows.org/install_homebrew_postgres/images/Install_Homebrew_and_PostgreSQL_on_Mac_OS_X_Mavericks/media_1387414
+463163.png" alt="" /></p>
+
+<p>You should see “Installation successful!”</p>
+
+<h4 id="run_brew_doctor">Run brew doctor</h4>
+
+<p><img src="http://assets.codefellows.org/install_homebrew_postgres/images/Install_Homebrew_and_PostgreSQL_on_Mac_OS_X_Mavericks/media_1387414
+484491.png" alt="" /></p>
+
+<p>You should see “Your system is ready to brew”. If not, there should be instructions on how to fix each issue it finds.</p>
+
+<h4 id="brew_install_postgres">brew install postgres</h4>
+
+<p><img src="http://assets.codefellows.org/install_homebrew_postgres/images/Install_Homebrew_and_PostgreSQL_on_Mac_OS_X_Mavericks/media_1387414
+540503.png" alt="" /></p>
+
+<p>use the command <code>brew install postgres</code> to get PostgreSQL</p>
+
+<h4 id="make_sure_to_read_the_caveats">Make sure to read the Caveats</h4>
+
+<p><img src="http://assets.codefellows.org/install_homebrew_postgres/images/Install_Homebrew_and_PostgreSQL_on_Mac_OS_X_Mavericks/media_1387414
+570920.png" alt="" /></p>
+
+<p>It’s a lot of text scrolling by and the temptation is to skim over it. ALWAYS read the Caveats section when installing with Homebrew. It contains critical info. I’ll go over what you need.</p>
+
+<h4 id="create_the_launchagents_directory_and_link_the_plist">Create the LaunchAgents Directory and Link the plist</h4>
+
+<p><img src="http://assets.codefellows.org/install_homebrew_postgres/images/Install_Homebrew_and_PostgreSQL_on_Mac_OS_X_Mavericks/media_1387414
+624947.png" alt="" /></p>
+
+<p>“`
+mkdir -p ~/Library/LaunchAgents  
+ln -sfv /usr/local/opt/postgresql/*.plist ~/Library/LaunchAgents</p>
+
+<p>“`</p>
+
+<p>These two commands create a LaunchAgents directory (if it didn’t exist already), and then make a symbolic link to the postgres configuration (property list) file. This is how you get PostgreSQL to start up automatically with your Mac.</p>
+
+<h4 id="load_the_plist">Load the plist</h4>
+
+<p><img src="http://assets.codefellows.org/install_homebrew_postgres/images/Install_Homebrew_and_PostgreSQL_on_Mac_OS_X_Mavericks/media_1387414
+640076.png" alt="" /></p>
+
+<p>copy launchctl load ~/Library/LaunchAgents/homebrew.mxcl.postgresql.plist from the homebrew caveats section<br />load the plist into the launch control service so that postgresql will automatically reload if needed.</p>
+
+<h4 id="load_the_plist_2">Load the plist</h4>
+
+<p><img src="http://assets.codefellows.org/install_homebrew_postgres/images/Install_Homebrew_and_PostgreSQL_on_Mac_OS_X_Mavericks/media_1387414
+655649.png" alt="" /></p>
+
+<p>paste in the launchctl load command</p>
+
+<h4 id="edit_the_system_paths">Edit the system paths</h4>
+
+<p><img src="http://assets.codefellows.org/install_homebrew_postgres/images/Install_Homebrew_and_PostgreSQL_on_Mac_OS_X_Mavericks/media_1387414
+842894.png" alt="" /></p>
+
+<p>Because Mac OS X comes with a system PostgreSQL, we want to make sure to load up our homebrew PostgreSQL first.<br />use the command</p>
+
+<p>sudo nano /etc/paths</p>
+
+<h4 id="default_paths">Default Paths</h4>
+
+<p><img src="http://assets.codefellows.org/install_homebrew_postgres/images/Install_Homebrew_and_PostgreSQL_on_Mac_OS_X_Mavericks/media_1387414
+852442.png" alt="" /></p>
+
+<p>Copy (or retype) /usr/local/bin from the bottom of the file and put it on the top line.</p>
+
+<h4 id="finished_editing_etcpaths">Finished editing /etc/paths</h4>
+
+<p><img src="http://assets.codefellows.org/install_homebrew_postgres/images/Install_Homebrew_and_PostgreSQL_on_Mac_OS_X_Mavericks/media_1387414
+875363.png" alt="" /></p>
+
+<p>Press Ctrl-X to save the file and answer yes.</p>
+
+<h4 id="write_to_etcpaths">Write to /etc/paths</h4>
+
+<p><img src="http://assets.codefellows.org/install_homebrew_postgres/images/Install_Homebrew_and_PostgreSQL_on_Mac_OS_X_Mavericks/media_1387414
+886883.png" alt="" /></p>
+
+<p>Save the file in its existing location (/etc/paths)</p>
+
+<h4 id="confirm_the_changes">Confirm the changes</h4>
+
+<p><img src="http://assets.codefellows.org/install_homebrew_postgres/images/Install_Homebrew_and_PostgreSQL_on_Mac_OS_X_Mavericks/media_1387414
+900686.png" alt="" /></p>
+
+<p>Use the unix <code>cat</code> command to confirm that your changes were saved</p>
+
+<h4 id="reboot">Reboot</h4>
+
+<p><img src="http://assets.codefellows.org/install_homebrew_postgres/images/Install_Homebrew_and_PostgreSQL_on_Mac_OS_X_Mavericks/media_1387414
+955093.png" alt="" /></p>
+
+<p>I know, this is Unix and not windows. But this is seriously the easiest way to do this. Don’t skip this step.</p>
+
+<h4 id="which_psql">Which psql</h4>
+
+<p><img src="http://assets.codefellows.org/install_homebrew_postgres/images/Install_Homebrew_and_PostgreSQL_on_Mac_OS_X_Mavericks/media_1387415
+116045.png" alt="" /></p>
+
+<p>After rebooting, your <code>which psql</code> command should return /usr/local/bin/psql</p>
+
+<h4 id="create_a_default_db_based_on_your_username">Create a default db based on your username</h4>
+
+<p><img src="http://assets.codefellows.org/install_homebrew_postgres/images/Install_Homebrew_and_PostgreSQL_on_Mac_OS_X_Mavericks/media_1387415
+158156.png" alt="" /></p>
+
+<p>the <code>which psql</code> command should return <code>/usr/local/bin/psql</code></p>
+
+<p>createdb <code>whoami</code></p>
+
+<p>Make sure to use backticks, they are below the tilde (squiggly line) character underneath the escape key on a US keyboard.<br />This just makes it easier to use the psql command.</p>
+
+<h4 id="try_out_the_psql_command">Try out the psql command</h4>
+
+<p><img src="http://assets.codefellows.org/install_homebrew_postgres/images/Install_Homebrew_and_PostgreSQL_on_Mac_OS_X_Mavericks/media_1387415
+196590.png" alt="" /></p>
+
+<p>Great! you can get into psql without any errors</p>
+
+<h4 id="install_the_pg_gem">Install the pg gem</h4>
+
+<p><img src="http://assets.codefellows.org/install_homebrew_postgres/images/Install_Homebrew_and_PostgreSQL_on_Mac_OS_X_Mavericks/media_1387433
+710226.png" alt="" /></p>
+
+<p><code>gem install pg</code> and you’re good to go</p>
+
+<p><a name='windows' /></p>
+
+<h3 id="how_to_install_postgres_on_windows">How to Install Postgres on Windows</h3>
+
+<p>Windows is straightforward: use the <a href="http://www.postgresql.org/download/windows/">installer from Postgresql.org</a> You can accept all of the default options.</p>
+
+<p><a name='ubuntu' /></p>
+
+<h3 id="how_to_install_postgres_on_ubuntu_linux">How to Install Postgres on Ubuntu Linux</h3>
+</body></html>
