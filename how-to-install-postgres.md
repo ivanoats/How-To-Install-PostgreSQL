@@ -164,7 +164,7 @@ You can accept all of the default options. Then you should be able to `gem insta
 <a name="ubuntu"></a>
 ## How to Install Postgres on Ubuntu Linux
 
-Ubuntu is not exactly straightforward, but at least it's [well-documented](https://help.ubuntu.com/community/PostgreSQL).  Choose the [Basic Setup](https://help.ubuntu.com/community/PostgreSQL#line-52). Some other things that have helped students are mentioned in the Mac OS X section above. Basically, create an empty database based on your username so that it's easier to get into using the psql command: `createdb `whoami``.
+Ubuntu is not exactly straightforward, but at least it's [well-documented](https://help.ubuntu.com/community/PostgreSQL).  Choose the [Basic Setup](https://help.ubuntu.com/community/PostgreSQL#line-52). Some other things that have helped students are mentioned in the Mac OS X section above. Basically, create an empty database based on your username so that it's easier to get into using the psql command: ``createdb `whoami` ``.
 
 For a development machine, it is also easier to set up your user with super-admin privileges. `sudo -u postgres createuser --superuser $USER`
 
